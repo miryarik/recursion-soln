@@ -1,8 +1,4 @@
-let arr = Array.from({ length: 1000000 }, () => Math.floor(Math.random() * 1000000));
-
-console.time("Slice-Based Merge Sort");
-mergeSort(arr); // Using the slice-based implementation
-console.timeEnd("Slice-Based Merge Sort");
+console.log(mergeSort([16, 3, 7, 4, 7, 4, 2]));
 
 function mergeSort(unsorted) {
     if (unsorted.length == 1) return unsorted;
@@ -38,21 +34,5 @@ function merge(one, two) {
         }
     }
 
-    if (i < one.length) {
-        // one has elements still
-        while (i < one.length) {
-            merged.push(one[i]);
-            i++;
-        }
-    }
-
-    if (j < two.length) {
-        // one has elements still
-        while (j < two.length) {
-            merged.push(two[j]);
-            j++;
-        }
-    }
-
-    return merged;
+    return merged.concat(one.slice(i)).concat(two.slice(j));
 }
